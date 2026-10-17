@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Context"
+  short_description: "Audit and improve scoped instructions and project memory"
+  default_prompt: "Use $project-context to audit this repository's instructions and implement the context improvements I authorize."

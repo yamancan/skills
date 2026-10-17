@@ -1,0 +1,4 @@
+interface:
+  display_name: "Let Chinese"
+  short_description: "Delegate to OpenCode; inspect what comes back"
+  default_prompt: "Use $let-chinese to delegate this task to OpenCode with my selected provider and model, then verify the result."

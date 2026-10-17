@@ -1,0 +1,4 @@
+interface:
+  display_name: "Duo"
+  short_description: "Codex + Opus at xhigh, continue the same task and chats"
+  default_prompt: "Use $duo for this bounded change with Codex and Opus at xhigh. Discover and continue its existing task and exact conversations before creating new peers."

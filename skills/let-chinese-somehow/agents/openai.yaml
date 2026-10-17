@@ -1,0 +1,4 @@
+interface:
+  display_name: "Let Chinese Somehow"
+  short_description: "Zro + Dolly 1 Security, with OpenCode auto approvals"
+  default_prompt: "Use $let-chinese-somehow to delegate this task through Zro to OpenCode with Dolly 1 Security and auto approvals, then verify the result."

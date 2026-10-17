@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orkestra"
+  short_description: "Coordinate slices with reviews and exact session recovery"
+  default_prompt: "Use $orkestra to complete these interacting slices, preserving decisions, session identity and verification evidence."
