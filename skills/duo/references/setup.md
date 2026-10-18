@@ -9,17 +9,13 @@ After Skills CLI installation, resolve this skill's actual installed directory a
 Orkestra requires both `duo` and `orkestra` installed into the same scope and agents, with sibling skill directories. A global installation is recommended to keep a single version against the per-user task index. Install/update them together:
 
 ```bash
-npx skills@latest add yamancan/skills --skill duo --skill orkestra -a claude-code -a codex -g
+npx yamancan/skills --skill orkestra -a claude-code -a codex -g
 npx skills@latest update duo orkestra -g
 ```
 
 For project installations omit `-g` on installation and use `-p` on update; keep versions aligned across projects. Choose one scope per skill and agent. This release provides the normal Orkestra profile; Light is deferred.
 
 Keep Skills CLI's recommended symlink method so agent directories share a canonical copy. With independent `--copy` installs, Skills CLI 1.7.2 updates run from inside an agent can leave the other agent's copy stale. Refresh both explicitly by rerunning the `add` command above with `--copy` and the same skill selection/scope. For project installs omit `-g`. Review local edits before replacement.
-
-With the optional clone installer, `bash install.sh --skill duo` or `bash install.sh --skill orkestra` links both clients and starts setup. `bash install.sh --skill duo --check` checks local status. Update that linked checkout with `git pull --ff-only`; Skills CLI updates do not manage clone-installed links.
-
-Native config homes select install destinations, with `SKILLS_INSTALL_HOME` as the fallback for default homes. `--no-setup` only links skills. A noninteractive install prints a shell-quoted setup command for the user's terminal.
 
 The repeatable `scripts/setup.sh [duo|normal] [ROLE=MODEL:EFFORT ...]` script has two stages: edit and confirm model/effort choices, then sign in through the native account flow if needed. Enter keeps a displayed choice; command-line overrides prefill those choices. Preferences go to the private shared `models.json`, outside the skill source. The script never asks for account secrets, installs system binaries, edits native model settings or creates provider review sessions. The two-stage flow was inspired by [Matt Pocock's Wizard skill](https://github.com/mattpocock/skills/tree/main/skills/engineering/wizard); the distributed script is purpose-built for native CLI setup.
 

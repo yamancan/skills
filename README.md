@@ -17,38 +17,37 @@ Delegate work, review the result, and keep project context under control. Each u
 You need Node.js **22.20+** with npm/npx and Git for the [Skills CLI](https://github.com/vercel-labs/skills) (tested with **1.7.2**; check its requirements when using a newer version). Run this from the project where you want to use the skills:
 
 ```bash
-npx skills@latest add yamancan/skills
-```
-
-Choose the skills and your agent in the installer, and keep the recommended **Symlink** method so both clients read the same installed files. This installs into the current project; add `-g` to make them available across your projects. While this repository is private, your GitHub account needs repository access and working Git, GitHub CLI or SSH authentication.
-
-<details>
-<summary>Short commands (release preparation)</summary>
-
-The same install flow is prepared for both entry points:
-
-```bash
-npx niche-skills@latest
 npx yamancan/skills
 ```
 
-The npm package has not been published yet. Until publication, use the Skills CLI command above. The GitHub shortcut requires repository access while this repository is private. Both shortcuts delegate to the pinned Skills CLI **1.7.2** and accept its installation options, for example `--skill duo --skill orkestra -a claude-code -a codex -g`. Updates still use the `skills update` commands below.
+Choose skills in your terminal; the shortcut includes Duo when you choose Orkestra. Then choose your agent in Skills CLI and keep the recommended **Symlink** method so both clients read the same installed files. For scripts and agent calls, pass explicit `--skill` and `--agent` choices. This installs into the current project; add `-g` to make them available across your projects. While this repository is private, your GitHub account needs repository access and working Git, GitHub CLI or SSH authentication.
+
+<details>
+<summary>npm alias (not published yet)</summary>
+
+The npm alias is prepared for the same install flow:
+
+```bash
+npx niche-skills@latest
+```
+
+The npm package has not been published yet. Until publication, use the GitHub shortcut above. The GitHub shortcut requires repository access while this repository is private. Both shortcuts use Skills CLI **1.7.2** for installation. They prompt for skill selection in an interactive terminal; scripts and agent calls must pass `--skill`. Selecting Orkestra automatically includes Duo. Supported options are `--skill`, `--agent`, `--global`, `--copy`, `--yes` and `--list` (use `--help` for aliases), for example `--skill duo --skill orkestra -a claude-code -a codex -g`. Updates still use the `skills update` commands below.
 
 </details>
 
 For a specific skill in both Claude Code and Codex:
 
 ```bash
-npx skills@latest add yamancan/skills --skill let-chinese-somehow -a claude-code -a codex
+npx yamancan/skills --skill let-chinese-somehow -a claude-code -a codex
 ```
 
 For Orkestra, install its required Duo companion in the same scope and agents. A global installation is recommended for this pair: Duo keeps a per-user task index, so keep the same Duo/Orkestra version across your projects. Use one scope per skill and agent.
 
 ```bash
-npx skills@latest add yamancan/skills --skill duo --skill orkestra -a claude-code -a codex -g
+npx yamancan/skills --skill orkestra -a claude-code -a codex -g
 ```
 
-`project-context` is optional. Add `--skill project-context` if you also want to audit your project's instructions. To inspect the catalog first, run `npx skills@latest add yamancan/skills --list`.
+`project-context` is optional. Add `--skill project-context` if you also want to audit your project's instructions. To inspect the catalog first, run `npx yamancan/skills --list`.
 
 ## 2. Set up once
 
@@ -97,7 +96,7 @@ npx skills@latest update -p
 If you chose **Copy** or an update leaves one client on old files, re-run `add` with the agents you actually installed and the same scope. Keep `--copy` only if you originally chose Copy; otherwise omit it to keep shared symlinks. For the global Duo/Orkestra pair copied into both clients:
 
 ```bash
-npx skills@latest add yamancan/skills --skill duo --skill orkestra -a claude-code -a codex -g --copy
+npx yamancan/skills --skill orkestra -a claude-code -a codex -g --copy
 ```
 
 This refreshes both copies. Omit `-g` for project installs and select the skills you actually use. In Skills CLI 1.7.2, an update run inside an agent can refresh only that agent's independent copy; shared symlinks avoid that mismatch.
@@ -105,25 +104,13 @@ This refreshes both copies. Omit `-g` for project installs and select the skills
 Re-run the install command to select newly added skills. Keep the CLI-generated `skills-lock.json` for project installations. Review or back up local edits to installed skill files before updating. Your native account credentials and saved Duo model choices live outside the skill package; existing sessions retain their pinned models. Update native CLIs separately. Start a fresh agent session after updating so it loads the new instructions.
 
 <details>
-<summary>Advanced: install from a Git clone</summary>
-
-Use this route when you want local links to a checkout you maintain. Use one installation method and scope per skill and agent to avoid conflicting copies.
+<summary>Advanced: use Skills CLI directly</summary>
 
 ```bash
-git clone https://github.com/yamancan/skills.git
-cd skills
-bash install.sh --collection coding
+npx skills@latest add yamancan/skills
 ```
 
-This installer links the five Coding skills globally into Claude Code and Codex and starts Duo/Orkestra model/account setup in an interactive terminal. Add `--no-setup` to link only. Keep the cloned checkout in place. Update from that checkout with:
-
-```bash
-git pull --ff-only
-```
-
-Changes to linked files are then available to new agent sessions. If an updated installer adds skills to the collection, rerun `bash install.sh --collection coding --no-setup` to create their links. If the pull fails, resolve local edits or history divergence before retrying; the installer does not manage Git updates. Use Skills CLI updates only for Skills CLI installations.
-
-`--skill NAME` selects one skill and includes Duo for Orkestra. `--no-setup` links instructions only. `--check` reports links and saved model choices without writes, network or inference. Native homes honor `CLAUDE_CONFIG_DIR` and `CODEX_HOME`; existing directories are backed up before replacement.
+This bypasses the shortcut's collection rules. Select both `duo` and `orkestra` when using Orkestra; the direct CLI does not add its companion automatically. Skill installation and updates are managed by Skills CLI. Existing links from an older Git-clone installation still follow their checkout; update that checkout with `git pull --ff-only`.
 
 </details>
 

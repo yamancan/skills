@@ -7,7 +7,7 @@ description: Coordinate separately owned implementation slices needing shared co
 
 The active Codex/Claude agent coordinates. Honor user-selected workflows, teams, models and efforts. Otherwise use Duo for one bounded outcome with one code owner, even across modules or for a consequential payment fix. Use Orkestra when separately owned slices interact. Independent backlog items can run as successive Duos. State the choice/reason once and reconsider actual dependency changes; risk determines verification depth, not team size.
 
-Install [Duo](../duo/SKILL.md) alongside Orkestra, with both skill directories under the same parent. Orkestra uses Duo's setup, workspace and process helpers; the repository installer includes it. With another skill manager, install both `duo` and `orkestra`. This release provides the normal profile; Light is deferred.
+Install [Duo](../duo/SKILL.md) alongside Orkestra, with both skill directories under the same parent. Orkestra uses Duo's setup, workspace and process helpers; the Niche Skills shortcut includes it automatically when Orkestra is selected. With another skill manager, install both `duo` and `orkestra`. This release provides the normal profile; Light is deferred.
 
 ## Roles and model choices
 

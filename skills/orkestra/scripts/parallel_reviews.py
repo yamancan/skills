@@ -14,7 +14,7 @@ import time
 DUO_SCRIPTS = Path(__file__).resolve().parents[2] / 'duo' / 'scripts'
 if not (DUO_SCRIPTS / 'process_control.py').is_file():
     raise SystemExit('Install Duo alongside Orkestra: both skill directories must share the same parent. '
-                     'Use install.sh --skill orkestra, or install both duo and orkestra with your skill manager.')
+                     'Use the Niche Skills shortcut with --skill orkestra, or install both duo and orkestra with your skill manager.')
 sys.path.insert(0, str(DUO_SCRIPTS))
 from process_control import stop_group as stop
 
