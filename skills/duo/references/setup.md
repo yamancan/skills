@@ -9,7 +9,7 @@ After Skills CLI installation, resolve this skill's actual installed directory a
 Orkestra requires both `duo` and `orkestra` installed into the same scope and agents, with sibling skill directories. A global installation is recommended to keep a single version against the per-user task index. Install/update them together:
 
 ```bash
-npx skills@latest add yamancan/niche-skills --skill duo --skill orkestra -a claude-code -a codex -g
+npx skills@latest add yamancan/skills --skill duo --skill orkestra -a claude-code -a codex -g
 npx skills@latest update duo orkestra -g
 ```
 

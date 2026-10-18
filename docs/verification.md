@@ -7,11 +7,17 @@ Supported hosts: macOS/Linux with Python 3.9+. Each independently installed skil
 ```bash
 python3 -m unittest discover -s tests -v
 bash -n install.sh skills/duo/scripts/setup.sh
+npm ci --ignore-scripts
+npm test
 ```
 
 All **185 tests passed** on Linux/Python 3.9 and macOS/Python 3.13 during release preparation. Tests live in the repository's `tests/` directory and are excluded from installed skill folders. They cover setup, authentication isolation, session/model verification, private state, deadlines, process cleanup, source capture and workspace lifecycle.
 
 Skills CLI **1.7.2** discovered and copied all five skills into disposable Claude Code and Codex homes. Both installed collections contained their licenses and no development tests or bytecode.
+
+## Install shortcuts
+
+The Node launcher has two process-boundary tests: literal selection arguments pass without shell execution, and installer failures keep their exit status. Its only runtime dependency is Skills CLI **1.7.2**. The npm package is prepared but unpublished and marked `private` to prevent accidental publication. The tarball allowlist contains only the launcher, README, license and package metadata; the skills are installed from GitHub by Skills CLI. A real local-tarball invocation discovered all five skills from the renamed private repository without installing them in list-only mode.
 
 ## Native integration
 

@@ -1,0 +1,34 @@
+{
+  "name": "niche-skills",
+  "version": "0.1.0",
+  "description": "Niche Skills by Yaman Can — install the skills you need for Claude Code and Codex.",
+  "type": "module",
+  "bin": {
+    "niche-skills": "bin/niche-skills.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/test_cli.mjs"
+  },
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "dependencies": {
+    "skills": "1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamancan/skills.git"
+  },
+  "homepage": "https://github.com/yamancan/skills",
+  "author": "Yaman Can",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": true
+}
