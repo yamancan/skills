@@ -4,15 +4,18 @@ Read on first use, missing Python/CLI/account prerequisites, profile selection o
 
 ## Entry points
 
-From the cloned niche-skills repository:
+After Skills CLI installation, resolve this skill's actual installed directory as `skill_dir`; a repository clone is not required. Run the read-only check with `python3 "$skill_dir/scripts/setup_models.py" --check --profile duo` (or `normal` for Orkestra). For missing selections or account setup, give the user a shell-quoted command using `bash` followed by the resolved absolute path to `scripts/setup.sh` and the chosen profile, to run in their own interactive terminal. Preserve the active native config homes and shared state directory. Never leave `$skill_dir` or a placeholder in the command shown to the user. The script's noninteractive output prints a concrete continuation command if a host cannot supply terminal input.
+
+Orkestra requires both `duo` and `orkestra` installed into the same scope and agents, with sibling skill directories. A global installation is recommended to keep a single version against the per-user task index. Install/update them together:
 
 ```bash
-bash install.sh --skill duo
-bash install.sh --skill orkestra
-bash install.sh --skill duo --check
+npx skills@latest add yamancan/niche-skills --skill duo --skill orkestra -a claude-code -a codex -g
+npx skills@latest update duo orkestra -g
 ```
 
-The installer links both clients and includes Duo when installing Orkestra. Both installed skill directories must share the same parent: Orkestra imports Duo helpers and links to its references. With another skill manager, install both `duo` and `orkestra`. This release provides the normal Orkestra profile; Light is deferred.
+For project installations omit `-g` on installation and use `-p` on update; keep versions aligned across projects. Choose one scope per skill and agent. This release provides the normal Orkestra profile; Light is deferred.
+
+With the optional clone installer, `bash install.sh --skill duo` or `bash install.sh --skill orkestra` links both clients and starts setup. `bash install.sh --skill duo --check` checks local status. Update that linked checkout with `git pull --ff-only`; Skills CLI updates do not manage clone-installed links.
 
 Native config homes select install destinations, with `SKILLS_INSTALL_HOME` as the fallback for default homes. `--no-setup` only links skills. A noninteractive install prints a shell-quoted setup command for the user's terminal.
 

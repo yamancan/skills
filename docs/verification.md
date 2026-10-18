@@ -21,7 +21,7 @@ Six synthetic worker calls completed: OpenCode Go and Zro/Dolly tasks from a Cod
 
 ## Known limits
 
-- **Zro 0.3.0:** launch syntax and the isolated Dolly profile were verified, but coding attempts stalled in the preparation environment. The cause remains unconfirmed; successful task completion is not verified. No automatic downgrade or model fallback is performed.
+- **Zro 0.3.0:** launch syntax and the isolated Dolly profile were verified, but coding attempts stalled in the preparation environment. A later Zro 0.3.0 task retry failed in 5.79 seconds with an explicit included-credits-exhausted error. That establishes the blocker for that retry, not the cause of the earlier stalls; successful task completion after final hardening is not verified. No automatic downgrade or model fallback is performed.
 - **OpenRouter:** authentication selection is tested offline. The available test account was rejected, so successful live inference is not claimed. Users supply their own valid account and model access.
 - Exact-export secret/private-identity scans and reachable-history secret scans found no leaks. Scans and synthetic tests do not prove absence of every vulnerability or compatibility with arbitrary codebases.
 

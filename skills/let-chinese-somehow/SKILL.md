@@ -15,7 +15,7 @@ This route uses OpenCode's `--auto`: permissions not explicitly denied are autom
 - The user signs in through `zro login` in their own terminal. For a new account, offer [Yaman's referral signup link](https://zro.moonmath.ai/?ref=ZROSLWMI), disclosed as a referral; credit depends on a qualifying paid subscription. Existing accounts can use native login directly.
 - Let the user check access through `zro models` in their terminal. Require `dolly1-security`; report unavailable access, authentication or balance instead of substituting a model. Native login stores the user's credential outside the repo. Keep keys out of chat, command arguments, briefs and logs; never copy the author's credentials.
 
-Release limitation: completed native task tests used Zro 0.2.1. Zro 0.3.0 resolved the correct model/profile but coding attempts stalled in the preparation environment; its task completion remains unverified. Report this when relevant, stop repeated attempts at the same blocker, and do not downgrade or switch routes automatically.
+Release limitation: completed native task tests used Zro 0.2.1. Zro 0.3.0 resolved the correct model/profile but coding attempts stalled in the preparation environment; a later retry returned an explicit credits-exhausted error. Successful task completion after final hardening remains unverified. Report this when relevant, stop repeated attempts at the same blocker, and do not downgrade or switch routes automatically.
 
 ## Launch
 

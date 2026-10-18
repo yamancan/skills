@@ -13,6 +13,8 @@ Codex calls Opus; Claude/Opus calls Codex. Both request **xhigh** through actual
 
 Run the installed Python helpers from the project's canonical checkout. Use their `--help` for flags.
 
+On first use or a setup request, read [setup](references/setup.md), resolve this installed skill directory and check the selected profile. Give the user the concrete terminal setup command when selections or native accounts are missing; complete that setup before dispatch.
+
 1. **Identify.** Discover existing work with `scripts/pair.py list/show` before creating a pair. Use the actual owner thread from trusted host metadata and the exact task/pair/peer IDs; a matching title alone is insufficient. Keep the recorded checkout, shared Duo state and native config homes. If no task exists, use `init` from the current project directory. Check saved defaults with `scripts/setup_models.py --check --profile duo` before selecting them.
 2. **Prepare.** Reuse acceptance and decisions. Implement the smallest complete change, run the relevant checks and write a bounded review brief carrying applicable repository instructions and user constraints; the automated reviewer disables customizations as described in the transport reference. Keep one writer per product file.
 3. **Freeze.** For source review, get the workspace state from `show`. Use `scripts/review_packet.py make --state STATE --file SOURCE --file TEST --file DIFF_OR_SPEC` with explicit required files, including necessary callers and evidence. Exclude secrets and unrelated data. The returned manifest binds the selected bytes; a snapshot label alone does not.
