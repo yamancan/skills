@@ -1,0 +1,15 @@
+{
+  "name": "yamancan",
+  "owner": {
+    "name": "Yaman Can"
+  },
+  "plugins": [
+    {
+      "name": "niche-coding",
+      "source": "./",
+      "description": "Niche Skills by Yaman Can: coding delegation, peer review, orchestration and project context.",
+      "category": "development"
+    }
+  ],
+  "description": "Niche Skills by Yaman Can. Install the Coding pack, or choose individual skills with Skills CLI."
+}

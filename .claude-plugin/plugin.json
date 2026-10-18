@@ -1,0 +1,10 @@
+{
+  "name": "niche-coding",
+  "version": "0.1.0",
+  "description": "Niche Skills by Yaman Can: coding delegation, peer review, orchestration and project context.",
+  "author": {
+    "name": "Yaman Can"
+  },
+  "repository": "https://github.com/yamancan/skills",
+  "license": "MIT"
+}

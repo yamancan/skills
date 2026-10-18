@@ -15,9 +15,17 @@ The Python suite passed on Linux/Python 3.9 and macOS/Python 3.13 during release
 
 Skills CLI **1.7.2** discovered and copied all five skills into disposable Claude Code and Codex homes. Both installed collections contained their licenses and no development tests or bytecode.
 
+## Native plugin distribution
+
+The `niche-coding` plugin exposes the same five skill directories through a portable root manifest and a Claude Code compatibility manifest. The shared marketplace uses the repository root; no hooks, MCP servers or automatic setup commands are declared.
+
+Claude Code **2.1.302** and Codex **0.163.0** installed the package in disposable configuration homes. Claude's component inventory reported exactly five skills and zero hooks, agents, MCP or LSP servers. Codex's app-server `skills/list` reported exactly five enabled plugin skills. Both clients namespace plugin skills: `/niche-coding:duo` in Claude Code and `$niche-coding:duo` in Codex; standalone CLI installations retain bare skill names.
+
+Git-backed fixture tests installed version 0.1.0, advanced the source to synthetic version 0.1.1, verified the updated files and sibling Duo/Orkestra helpers, then uninstalled the plugin in both clients. Claude requires refreshing the marketplace before a manual plugin update; Codex refreshed the installed version through marketplace upgrade and a fresh client command. These distribution checks do not run a model task or establish provider entitlement.
+
 ## Install shortcuts
 
-The Node launcher checks skill selection before calling Skills CLI, includes Duo for Orkestra, and rejects unsupported commands and unattended installs without an explicit selection. Its process tests also cover literal arguments without shell execution and preservation of installer failure status. Its only runtime dependency is Skills CLI **1.7.2**. The npm package is prepared but unpublished and marked `private` to prevent accidental publication. The tarball allowlist contains only the launcher, README, license and package metadata; the skills are installed from GitHub by Skills CLI. A real local-tarball invocation discovered all five skills from the renamed private repository without installing them in list-only mode.
+The Node launcher checks skill selection before calling Skills CLI, includes Duo for Orkestra, and rejects unsupported commands and unattended installs without an explicit selection. Its process tests also cover literal arguments without shell execution and preservation of installer failure status. Its only npm runtime dependency is Skills CLI **1.7.2**. The launcher disables installer telemetry by default, including the optional remote audit-card lookup; direct Skills CLI calls need their own `DISABLE_TELEMETRY=1`. A process regression test verifies the child receives the privacy default even when the parent has no opt-out environment variables. The npm package is prepared but unpublished and marked `private` to prevent accidental publication. The tarball allowlist contains only the launcher, README, license and package metadata; the skills are installed from GitHub by Skills CLI. A real local-tarball invocation discovered all five skills from the renamed private repository without installing them in list-only mode.
 
 ## Native integration
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "niche-coding",
+  "version": "0.1.0",
+  "description": "Niche Skills by Yaman Can: coding delegation, peer review, orchestration and project context.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Niche Skills \u00b7 Coding",
+        "shortDescription": "Delegate coding, review results and manage project context.",
+        "developerName": "Yaman Can",
+        "category": "Developer Tools"
+      }
+    }
+  }
+}

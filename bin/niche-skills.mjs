@@ -57,6 +57,7 @@ if (skills.size) forwarded.push('--skill', ...skills);
 const installer = createRequire(import.meta.url).resolve('skills/bin/cli.mjs');
 const child = spawnSync(process.execPath, [installer, 'add', 'yamancan/skills', ...forwarded], {
   stdio: 'inherit',
+  env: { ...process.env, DISABLE_TELEMETRY: '1' },
 });
 if (child.error) console.error(`Could not start Skills CLI: ${child.error.message}`);
 process.exit(child.status ?? 1);

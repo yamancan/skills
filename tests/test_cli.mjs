@@ -20,6 +20,7 @@ function fixture(t, exitCode = 0) {
   writeFileSync(join(dependency, 'cli.mjs'), `
     import { writeFileSync } from 'node:fs';
     writeFileSync(process.env.ARGV_CAPTURE, JSON.stringify(process.argv.slice(2)));
+    if (process.env.PRIVACY_CAPTURE) writeFileSync(process.env.PRIVACY_CAPTURE, JSON.stringify({ DISABLE_TELEMETRY: process.env.DISABLE_TELEMETRY, DO_NOT_TRACK: process.env.DO_NOT_TRACK }));
     console.error('installer status');
     process.exit(${exitCode});
   `);
@@ -96,4 +97,18 @@ test('unattended selection also requires an explicit target agent', t => {
   });
   assert.equal(result.status, 2);
   assert.equal(existsSync(f.capture), false);
+});
+
+
+test('disables installer telemetry even when the parent environment does not opt out', t => {
+  const f = fixture(t);
+  const privacy = join(f.root, 'privacy.json');
+  const env = { ...process.env, ARGV_CAPTURE: f.capture, PRIVACY_CAPTURE: privacy };
+  delete env.DISABLE_TELEMETRY;
+  delete env.DO_NOT_TRACK;
+  const result = spawnSync(process.execPath, [f.launcher, '--list'], {
+    env, encoding: 'utf8', timeout: 5000,
+  });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(JSON.parse(readFileSync(privacy)).DISABLE_TELEMETRY, '1');
 });
