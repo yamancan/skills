@@ -15,6 +15,8 @@ npx skills@latest update duo orkestra -g
 
 For project installations omit `-g` on installation and use `-p` on update; keep versions aligned across projects. Choose one scope per skill and agent. This release provides the normal Orkestra profile; Light is deferred.
 
+Keep Skills CLI's recommended symlink method so agent directories share a canonical copy. With independent `--copy` installs, Skills CLI 1.7.2 updates run from inside an agent can leave the other agent's copy stale. Refresh both explicitly by rerunning the `add` command above with `--copy` and the same skill selection/scope. For project installs omit `-g`. Review local edits before replacement.
+
 With the optional clone installer, `bash install.sh --skill duo` or `bash install.sh --skill orkestra` links both clients and starts setup. `bash install.sh --skill duo --check` checks local status. Update that linked checkout with `git pull --ff-only`; Skills CLI updates do not manage clone-installed links.
 
 Native config homes select install destinations, with `SKILLS_INSTALL_HOME` as the fallback for default homes. `--no-setup` only links skills. A noninteractive install prints a shell-quoted setup command for the user's terminal.

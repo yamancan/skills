@@ -20,7 +20,7 @@ You need Node.js **22.20+** with npm/npx and Git for the [Skills CLI](https://gi
 npx skills@latest add yamancan/niche-skills
 ```
 
-Choose the skills and your agent in the installer. This installs into the current project; add `-g` to make them available across your projects. While this repository is private, your GitHub account needs repository access and working Git, GitHub CLI or SSH authentication.
+Choose the skills and your agent in the installer, and keep the recommended **Symlink** method so both clients read the same installed files. This installs into the current project; add `-g` to make them available across your projects. While this repository is private, your GitHub account needs repository access and working Git, GitHub CLI or SSH authentication.
 
 For a specific skill in both Claude Code and Codex:
 
@@ -79,6 +79,14 @@ To update every installed skill in this project, including skills from other rep
 ```bash
 npx skills@latest update -p
 ```
+
+If you chose **Copy** or an update leaves one client on old files, re-run `add` with the agents you actually installed and the same scope. Keep `--copy` only if you originally chose Copy; otherwise omit it to keep shared symlinks. For the global Duo/Orkestra pair copied into both clients:
+
+```bash
+npx skills@latest add yamancan/niche-skills --skill duo --skill orkestra -a claude-code -a codex -g --copy
+```
+
+This refreshes both copies. Omit `-g` for project installs and select the skills you actually use. In Skills CLI 1.7.2, an update run inside an agent can refresh only that agent's independent copy; shared symlinks avoid that mismatch.
 
 Re-run the install command to select newly added skills. Keep the CLI-generated `skills-lock.json` for project installations. Review or back up local edits to installed skill files before updating. Your native account credentials and saved Duo model choices live outside the skill package; existing sessions retain their pinned models. Update native CLIs separately. Start a fresh agent session after updating so it loads the new instructions.
 
