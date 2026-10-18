@@ -65,15 +65,15 @@ npx yamancan/skills --skill orkestra -a claude-code -a codex -g
 Scripts and agent calls must specify both skills and agents. Use `--list` to browse and `--help` for supported options. The shortcut uses Skills CLI **1.7.2** and disables its telemetry, including its optional remote audit-card lookup. This is not a security scan.
 
 <details>
-<summary>npm alias and direct Skills CLI</summary>
+<summary>npm shortcut and direct Skills CLI</summary>
 
-The equivalent npm shortcut is prepared but **not published yet**:
+The equivalent npm shortcut is:
 
 ```bash
 npx niche-skills
 ```
 
-Until publication, use `npx yamancan/skills`. Both use the same launcher and source repository.
+Both shortcuts use the same launcher and source repository.
 
 You can also use Skills CLI directly:
 

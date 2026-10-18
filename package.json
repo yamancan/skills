@@ -1,7 +1,7 @@
 {
   "name": "niche-skills",
   "version": "0.1.0",
-  "description": "Niche Skills by Yaman Can — install the skills you need for Claude Code and Codex.",
+  "description": "Niche Skills by Yaman Can \u2014 install the skills you need for Claude Code and Codex.",
   "type": "module",
   "bin": {
     "niche-skills": "bin/niche-skills.mjs"
@@ -29,6 +29,5 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
-  },
-  "private": true
+  }
 }
