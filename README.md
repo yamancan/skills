@@ -42,13 +42,11 @@ For Claude Code and Codex. Choose by the job you want done:
 | --- | --- | --- |
 | Get a second model's review of a change | [**Duo**](skills/duo/SKILL.md) | Pairs Codex and Claude/Opus, keeping the same peer conversation for follow-ups. |
 | Coordinate several independently owned tasks | [**Orkestra**](skills/orkestra/SKILL.md) | Organizes ownership, dependencies, and integration. Includes Duo. |
-| Give a focused task to OpenCode | [**Let Chinese**](skills/let-chinese/SKILL.md) | Runs a worker with your selected supported provider/model; your main agent checks the result. |
+| Give a focused task to OpenCode | [**Let Chinese**](skills/let-chinese/SKILL.md) | Runs a worker with your selected supported provider/model, or a free OpenCode model with no key; your main agent checks the result. |
 | Use Dolly 1 Security through Zro | [**Let Chinese Somehow**](skills/let-chinese-somehow/SKILL.md) | Runs the Zro/OpenCode route with automatic OpenCode approvals. |
 | Fix conflicting or missing agent instructions | [**Project Context**](skills/project-context/SKILL.md) | Audits the repository's instructions and proposes changes to its context. |
 
 ## Install
-
-**Private beta:** the npm launcher is public; installing the skills currently requires GitHub repository access.
 
 Choose one method per agent. The plugins install the Coding collection; the npm shortcuts let you choose skills and agents.
 

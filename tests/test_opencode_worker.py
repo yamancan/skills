@@ -452,6 +452,16 @@ class OpenCodeWorker(unittest.TestCase):
         self.assertEqual(list(state.rglob('private-marker')), [])
         self.assertEqual(list(state.rglob('CLAUDE.md')), [])
 
+    def test_free_opencode_model_needs_no_auth_and_paid_zen_is_rejected(self):
+        (self.data/'opencode'/'auth.json').unlink()
+        proc, result = self.launch(model='opencode/glm-5.3-flash-free')
+        self.assertEqual(proc.returncode, 0, result)
+        self.assertEqual(result['status'], 'finished')
+        record = json.loads((Path(result['state_dir'])/'data'/'invocation.json').read_text())
+        self.assertEqual(record['auth_providers'], [])
+        proc, result = self.launch(model='opencode/paid-model')
+        self.assertNotEqual(proc.returncode, 0)
+
     def test_zro_uses_native_auth_auto_and_fixed_model(self):
         proc, result = self.launch(worker=1, model=None, extra=['--zro'])
         self.assertEqual(proc.returncode, 0, result)

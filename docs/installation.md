@@ -28,7 +28,7 @@ codex plugin add niche-coding@yamancan
 
 Start a fresh session and select the installed skill, for example `$niche-coding:duo`. The plugin adds instructions and helpers; it does not install or configure provider accounts.
 
-While this repository is private, both plugin methods require GitHub repository access and working Git authentication. Use current Claude Code/Codex versions with plugin support. See [verification](verification.md) for tested versions.
+Use current Claude Code/Codex versions with plugin support. See [verification](verification.md) for tested versions.
 
 ### Individual skills and other agents
 
@@ -38,7 +38,7 @@ You need Node.js **22.20+**, npm/npx and Git for this route. Run from the projec
 npx yamancan/skills
 ```
 
-Choose skills, then your agent. The shortcut includes Duo when you choose Orkestra. Keep the recommended **Symlink** method so clients share installed files. Installation defaults to the current project; add `-g` for all your projects. Private repository access is required until public release.
+Choose skills, then your agent. The shortcut includes Duo when you choose Orkestra. Keep the recommended **Symlink** method so clients share installed files. Installation defaults to the current project; add `-g` for all your projects.
 
 For a specific skill in both clients:
 
@@ -84,7 +84,7 @@ Skill installation adds instructions and helpers. Native coding tools, accounts 
 | `project-context` | Use it in your agent; no extra provider account is needed. |
 | `duo` | Install Claude Code and Codex CLI. Ask your agent: **“Set up the installed Duo skill: resolve its installed directory, check the duo profile and give me the exact setup command for my terminal.”** The bundled wizard lets you choose models and sign in through native accounts. |
 | `orkestra` | Install Duo alongside it. Ask your agent to set up the **normal** profile using the installed Duo wizard; this also configures future Duo model IDs. |
-| `let-chinese` | Install OpenCode, run `opencode` in your terminal, connect your provider with `/connect` and select a model with `/models`. This worker supports native API authentication for OpenRouter and OpenCode Go. |
+| `let-chinese` | Install OpenCode, run `opencode` in your terminal, connect your provider with `/connect` and select a model with `/models`. This worker supports native API authentication for OpenRouter and OpenCode Go. Free OpenCode Zen models such as `opencode/glm-5.3-flash-free` need only OpenCode, with no account or key, while they stay free. |
 | `let-chinese-somehow` | Install OpenCode and Zro, run `zro login` in your terminal, then check `zro models` for `dolly1-security` access. |
 
 Use the official [OpenCode](https://opencode.ai/docs/), [Zro](https://zro.moonmath.ai/docs/cli), [Claude Code](https://code.claude.com/docs/en/setup) and [Codex](https://developers.openai.com/codex/cli/) installation instructions. The skills launch existing tools; they do not install coding agents or buy access. Duo's [setup reference](../skills/duo/references/setup.md) explains model choices and repeat setup.

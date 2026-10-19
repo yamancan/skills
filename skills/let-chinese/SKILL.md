@@ -13,7 +13,7 @@ You remain responsible for the result. OpenCode is the worker, not a way to expa
 
 Route: **Claude Code or Codex → a bounded OpenCode worker → the user's chosen provider/model**.
 
-Use an explicitly requested model, otherwise resolve the user's existing choice. If none is configured, have the user open `opencode` in their own terminal, connect a provider through `/connect`, and select a model through `/models`. This release's isolated worker supports native API authentication for `openrouter/*` and `opencode-go/*`. Resolve the exact ID as `model_id`; custom provider configuration and OAuth are unsupported. No separate credential store is needed.
+Use an explicitly requested model, otherwise resolve the user's existing choice. If none is configured, offer a free OpenCode Zen model such as `opencode/glm-5.3-flash-free`, which needs no account or key; `opencode models opencode` lists the current `-free` models, and free availability can end. Otherwise have the user open `opencode` in their own terminal, connect a provider through `/connect`, and select a model through `/models`. This release's isolated worker supports native API authentication for `openrouter/*` and `opencode-go/*`, and free `opencode/*-free` models without authentication. Resolve the exact ID as `model_id`; custom provider configuration and OAuth are unsupported. No separate credential store is needed.
 
 This skill launches OpenCode; it does not install it. If missing, report the prerequisite with the [official installation instructions](https://opencode.ai/docs/). If the selected route is unavailable, report the blocker. Keep startup defaults unchanged and use the separate `let-chinese-somehow` skill only when the user selects that route.
 

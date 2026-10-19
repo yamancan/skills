@@ -343,7 +343,7 @@ def arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--dir', required=True, type=Path)
     parser.add_argument('--brief', required=True, type=Path)
-    parser.add_argument('--model', help='Native openrouter/* or opencode-go/* model')
+    parser.add_argument('--model', help='Native openrouter/*, opencode-go/* or free opencode/*-free model')
     parser.add_argument('--zro', action='store_true', help='Pin zro/dolly1-security and --auto')
     parser.add_argument('--auto', action='store_true', help='Explicitly opt in to native automatic approvals')
     parser.add_argument('--session', help='Exact session ID; requires its original --state-dir')
@@ -377,12 +377,14 @@ def main():
         # Zro's subsequent bare `opencode` lookup.
         search_path = os.pathsep.join(os.path.abspath(entry or os.curdir)
                                       for entry in os.environ.get('PATH', os.defpath).split(os.pathsep))
+        # OpenCode Zen's free models run without an account or key.
+        free = not args.zro and (args.model or '').startswith('opencode/') and args.model.endswith('-free')
         if args.zro:
             if args.model and args.model != 'zro/dolly1-security':
                 raise WorkerError('Zro worker requires zro/dolly1-security')
             args.model = 'zro/dolly1-security'
-        elif not args.model or args.model.split('/', 1)[0] not in {'openrouter', 'opencode-go'} or '/' not in args.model:
-            raise WorkerError('Choose an explicit native openrouter/* or opencode-go/* model; custom configs unsupported')
+        elif not free and (not args.model or args.model.split('/', 1)[0] not in {'openrouter', 'opencode-go'} or '/' not in args.model):
+            raise WorkerError('Choose an explicit native openrouter/*, opencode-go/* or free opencode/*-free model; custom configs unsupported')
         result['model'] = args.model
         binaries = {}
         for name in ['opencode'] + (['zro'] if args.zro else []):
@@ -395,7 +397,7 @@ def main():
             binaries[name] = str(control)
         search_path = os.pathsep.join(entry for entry in search_path.split(os.pathsep)
                                       if not Path(entry).resolve().is_relative_to(boundary))
-        auth, secrets = native_auth(args.zro, args.model.split('/', 1)[0])
+        auth, secrets = ({}, []) if free else native_auth(args.zro, args.model.split('/', 1)[0])
         def clean(value):
             text = str(value)
             for secret in secrets:
