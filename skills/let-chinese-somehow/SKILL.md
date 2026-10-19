@@ -1,6 +1,6 @@
 ---
 name: let-chinese-somehow
-description: Use when the user says "let chinese somehow" or explicitly asks to delegate through Zro/Moonmath with Dolly 1 Security and OpenCode auto approvals. Regular "let chinese" uses the separate OpenCode skill.
+description: Hands one bounded task through Zro to OpenCode on Dolly 1 Security with automatic OpenCode approvals; the calling agent then reviews the result. Use only when the user says "let chinese somehow" or explicitly asks for Zro, Moonmath or Dolly 1 Security.
 ---
 
 # Let Chinese Somehow

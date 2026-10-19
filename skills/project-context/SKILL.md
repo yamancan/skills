@@ -1,6 +1,6 @@
 ---
 name: project-context
-description: Use when auditing, setting up or restructuring a repository's AGENTS.md, CLAUDE.md, scoped instructions, project memory or just-in-time context, especially when instructions conflict, repeat, become stale or load too much history.
+description: Audits a repository's agent instructions (AGENTS.md, CLAUDE.md, scoped rules, project memory and just-in-time context) and, when authorized, restructures them so each fact has one home, then verifies what actually loads. Use when setting them up, or when instructions conflict, repeat, go stale or load too much history.
 ---
 
 # Project context

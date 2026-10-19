@@ -1,6 +1,6 @@
 ---
 name: orkestra
-description: Coordinate separately owned implementation slices needing shared contracts, dependency ordering or integrated acceptance, or an explicit Orkestra request. Use Duo for one bounded outcome.
+description: Coordinates separately owned coding slices that interact. The active agent writes shared contracts and briefs, Codex builds and reviews each slice, and the coordinator integrates and decides. Use when the user says "orkestra" or a change needs shared contracts, dependency ordering or integrated acceptance. For one bounded change, use duo.
 ---
 
 # Orkestra

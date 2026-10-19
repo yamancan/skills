@@ -1,6 +1,6 @@
 ---
 name: duo
-description: Coordinate one bounded coding slice or continue its Codex/Opus conversations. Use Orkestra when separately owned slices need shared contracts, dependency ordering or integrated acceptance.
+description: Pairs Codex and Claude Opus on one bounded coding change. The code owner implements and tests it, the other model reviews a frozen diff, and findings are fixed in the same peer conversation. Use when the user says "duo", wants a second model to review a change, or continues an existing Duo task. For separately owned slices that need shared contracts or dependency ordering, use orkestra.
 ---
 
 # Duo

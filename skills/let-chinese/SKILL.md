@@ -1,6 +1,6 @@
 ---
 name: let-chinese
-description: Use when the user says "let chinese", "let the Chinese one handle this", or asks OpenCode to do a bounded task while the current agent reviews it. Uses the user's chosen provider and model; "let chinese somehow" selects the separate Zro skill.
+description: Hands one bounded coding task to an isolated OpenCode worker on the user's chosen model or a free OpenCode model; the calling agent then reviews the diff and reruns the checks. Use when the user says "let chinese" or "let the Chinese one handle this", or asks OpenCode to do a task. For "let chinese somehow", use let-chinese-somehow.
 ---
 
 # Let Chinese
