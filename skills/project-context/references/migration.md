@@ -45,3 +45,14 @@ Exercise representative tasks:
 Use root and nested launch paths for the actual supported clients. When independent agents are available and authorized, give one a realistic task and minimal raw artifacts without revealing the expected answer. Otherwise record a manual routing trace and its limits. If an automatic loader or real task trial was not run, say so explicitly.
 
 Structural success proves that references resolve. Routing success proves discoverability for the tested task. Neither proves future obedience. Keep critical invariants in code/tests, and compare real task outcomes after adoption before claiming reliability gains.
+
+## Report
+
+Use checkout-relative paths or neutral placeholders in shareable reports; keep full private paths and diagnostic logs local. Report:
+
+- What moved or disappeared, why, and its recoverable source.
+- Before/after **effective loaded context**, including imports; label file-byte counts separately from measured tokens.
+- Structural checks, actual client loading observations and task trials as separate evidence.
+- Unverified behavior and remaining integration work. Source-tested, deployed and live-accepted are distinct states.
+
+After real use, compare missed constraints, repeated lookups, corrections and time to the same completion criteria. Keep useful routing; remove layers that add reading without changing decisions.

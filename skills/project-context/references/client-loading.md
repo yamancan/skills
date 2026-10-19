@@ -1,6 +1,6 @@
 # Client loading
 
-Consult this when designing or checking how instructions reach an agent. Official documentation checked 2026-10-05; recheck the relevant page when client versions, settings or observed behavior differ.
+Consult this when designing or checking how instructions reach an agent. Official documentation checked 2026-10-05; recheck the relevant page when client versions, settings or observed behavior differ. Verify the installed client and effective configuration before promising just-in-time loading; model names alone do not establish loading behavior.
 
 ## Codex
 

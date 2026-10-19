@@ -1,15 +1,20 @@
 ---
 name: orkestra
-description: Coordinates separately owned coding slices that interact. The active agent writes shared contracts and briefs, Codex builds and reviews each slice, and the coordinator integrates and decides. Use when the user says "orkestra" or a change needs shared contracts, dependency ordering or integrated acceptance. For one bounded change, use duo.
+description: Coordinates interacting coding slices with shared contracts, a Codex build and review per slice, and one integration decision. Use for "orkestra" or multi-part changes with dependencies. Use duo for one change.
 ---
 
 # Orkestra
 
-The active Codex/Claude agent coordinates. Honor user-selected workflows, teams, models and efforts. Otherwise use Duo for one bounded outcome with one code owner, even across modules or for a consequential payment fix. Use Orkestra when separately owned slices interact. Independent backlog items can run as successive Duos. State the choice/reason once and reconsider actual dependency changes; risk determines verification depth, not team size.
+The active Codex or Claude agent coordinates. Honor the user's chosen workflow, team, models and efforts. Otherwise choose by ownership:
 
-Install [Duo](../duo/SKILL.md) alongside Orkestra, with both skill directories under the same parent. Orkestra uses Duo's setup, workspace and process helpers; the Niche Skills shortcut includes it automatically when Orkestra is selected. With another skill manager, install both `duo` and `orkestra`. This release provides the normal profile; Light is deferred.
+- **Duo** for one bounded outcome with one code owner, even across modules or for a consequential payment fix. Run independent backlog items as successive Duos.
+- **Orkestra** when separately owned slices interact.
 
-## Roles and model choices
+State the choice and reason once; revisit it only when dependencies actually change. Risk sets verification depth, not team size.
+
+Orkestra needs [Duo](../duo/SKILL.md) installed beside it, under the same parent directory, for its setup, workspace and process helpers. The Niche Skills installer adds Duo when Orkestra is selected; with another skill manager, install both `duo` and `orkestra`. This release ships the normal profile only.
+
+## Roles and models
 
 | Responsibility | Route |
 | --- | --- |
@@ -20,16 +25,19 @@ Install [Duo](../duo/SKILL.md) alongside Orkestra, with both skill directories u
 | Paired Codex/Opus reviews | Saved Duo seats, configured together with normal setup |
 | Consequential unresolved designs | Two Fable and two Astra designers, then coordinator synthesis |
 
-Before selecting defaults on first use or model updates, read [shared setup/model choices](../duo/references/setup.md) and run the installed Duo `setup_models.py --check --profile normal`. Use the saved role selections; explicit user choices override named rows. The dated candidate roster recommends Sol xhigh for build/review and Fable/Astra xhigh for design. If unconfigured, run the normal setup wizard. Apply actual host controls; preferences do not change the active coordinator or existing native sessions. Unavailable/unsupported routes stay explicit rather than silently substituting.
+On first use or after a model update, read [shared setup](../duo/references/setup.md) and run the installed Duo `setup_models.py --check --profile normal`; run the normal setup wizard if it is unconfigured. Use the saved role selections; the user's explicit choices override them. Apply them through actual host controls, since preferences never change the active coordinator or an existing native session. Report an unavailable or unsupported route instead of substituting another.
 
-## Run and preserve the task
+## Run
 
-Before framing/building/integration, read and follow [shared workflow](references/workflow.md). Before peer creation, continuation, caller changes or manual use, read [task sessions](references/sessions.md). Before review, read [review protocol](references/reviews.md). These references own shared procedure, identity/recovery and review evidence respectively.
+Read each reference before its step:
 
-Discover the existing task before creating peers. A new caller chat keeps the task and exact peer IDs through explicit handoff; separate tasks/independent initial reviews are deliberate. Workers return results without recursively delegating back. Keep one active call or managed manual use, reconcile native additions before dispatch and preserve recorded models/efforts. The paired dispatcher supports only read-only Codex/Opus at xhigh; use supported host tools for other roles.
+| Before | Read |
+| --- | --- |
+| Framing, building or integration | [shared workflow](references/workflow.md) |
+| Creating, continuing or handing off a peer, or manual use | [task sessions](references/sessions.md) |
+| Any review | [review protocol](references/reviews.md) |
+| A consequential design choice that stays unresolved | [unresolved designs](references/workflow.md#unresolved-designs) |
 
-## Unresolved design alternatives
+Discover the existing task before creating peers, and keep exact peer IDs across caller chats. Workers report back without delegating further. The paired dispatcher runs only read-only Codex/Opus reviews at xhigh; other roles use supported host tools.
 
-Use the four-design default only for a consequential interface/ownership choice that remains unresolved, unless the user selected another team. Freeze question, constraints and source; compare minimal interface, future seam, common caller/safety and flexibility. Initial designs are independent; cross-critique uses recorded sessions afterward. Synthesize caller burden, locality, evidence and tradeoffs rather than treating agreement as correctness. Ask only for unresolved product choices and record the selected direction. Paper review does not prove measured product quality.
-
-Finish the requested scope with actual checks, applicable reviews and the integrated verdict required by the shared workflow. Report implementation and live acceptance separately.
+Finish the requested scope with actual checks, the applicable reviews and the integrated verdict from the workflow. Report implementation and live acceptance separately.
