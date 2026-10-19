@@ -21,6 +21,21 @@ Install Coding as a pack or pick individual skills.
 
 ## Coding
 
+<table>
+  <tr>
+    <td><a href="skills/duo/SKILL.md"><img src="docs/images/duo.jpg" alt="/duo: Codex writes. Opus reviews." width="400"></a></td>
+    <td><a href="skills/orkestra/SKILL.md"><img src="docs/images/orkestra.jpg" alt="/orkestra: Many coding agents. One verdict." width="400"></a></td>
+  </tr>
+  <tr>
+    <td><a href="skills/let-chinese/SKILL.md"><img src="docs/images/let-chinese.jpg" alt="/let-chinese: Another Chinese model is more willing to get shit done. Use it." width="400"></a></td>
+    <td><a href="skills/let-chinese-somehow/SKILL.md"><img src="docs/images/let-chinese-somehow.jpg" alt="/let-chinese-somehow: Some tasks need to be done. Somehow." width="400"></a></td>
+  </tr>
+  <tr>
+    <td><a href="skills/project-context/SKILL.md"><img src="docs/images/project-context.jpg" alt="/project-context: Give each fact one home." width="400"></a></td>
+    <td></td>
+  </tr>
+</table>
+
 For Claude Code and Codex. Choose by the job you want done:
 
 | When you want to… | Use | What it does |
