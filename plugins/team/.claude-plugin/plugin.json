@@ -1,0 +1,10 @@
+{
+  "name": "niche-team",
+  "version": "0.1.0",
+  "description": "Niche Skills by Yaman Can: turn Telegram conversations into lossless AI context and source-linked summaries.",
+  "author": {
+    "name": "Yaman Can"
+  },
+  "repository": "https://github.com/yamancan/skills",
+  "license": "MIT"
+}

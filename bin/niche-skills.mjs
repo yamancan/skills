@@ -3,7 +3,8 @@ import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { createInterface } from 'node:readline/promises';
 
-const catalog = ['let-chinese', 'let-chinese-somehow', 'duo', 'orkestra', 'project-context'];
+const catalog = ['let-chinese', 'let-chinese-somehow', 'duo', 'orkestra', 'project-context',
+  'telegram-context', 'tg-cleanup', 'tg-summarize'];
 const args = process.argv.slice(2);
 const selected = [];
 const forwarded = [];
@@ -13,7 +14,7 @@ function fail(message) {
   process.exit(2);
 }
 if (args.includes('--help') || args.includes('-h')) {
-  console.log(`Niche Skills — by Yaman Can\nUsage: npx yamancan/skills [options]\n\n--skill, -s NAME...  Select skills (* selects all); Orkestra includes Duo\n--agent, -a NAME...  Choose agents, e.g. claude-code codex\n--global, -g        Install globally (default: current project)\n--copy              Copy instead of shared symlinks\n--yes, -y           Skip confirmation; requires explicit skills and agents\n--list, -l          List the collection without installing\n\nAvailable: ${catalog.join(', ')}\nUpdate: npx skills@latest update`);
+  console.log(`Niche Skills — by Yaman Can\nUsage: npx yamancan/skills [options]\n\n--skill, -s NAME...  Select skills (* selects all); Orkestra includes Duo; tg-cleanup and tg-summarize include telegram-context\n--agent, -a NAME...  Choose agents, e.g. claude-code codex\n--global, -g        Install globally (default: current project)\n--copy              Copy instead of shared symlinks\n--yes, -y           Skip confirmation; requires explicit skills and agents\n--list, -l          List the collection without installing\n\nAvailable: ${catalog.join(', ')}\nUpdate: npx skills@latest update`);
   process.exit(0);
 }
 for (let i = 0; i < args.length; i++) {
@@ -52,6 +53,8 @@ if (!listing && unattended && !forwarded.includes('--agent') && !forwarded.inclu
 }
 const skills = new Set(selected.includes('*') ? catalog : selected);
 if (skills.has('orkestra')) skills.add('duo');
+// Both Telegram skills run the engine shipped in their telegram-context sibling.
+if (skills.has('tg-cleanup') || skills.has('tg-summarize')) skills.add('telegram-context');
 if (skills.size) forwarded.push('--skill', ...skills);
 
 const installer = createRequire(import.meta.url).resolve('skills/bin/cli.mjs');

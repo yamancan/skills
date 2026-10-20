@@ -11,9 +11,9 @@ npm ci --ignore-scripts
 npm test
 ```
 
-The Python suite passed on Linux/Python 3.9 and macOS/Python 3.13 during release preparation. Tests live in the repository's `tests/` directory and are excluded from installed skill folders. They cover setup, authentication isolation, session/model verification, private state, deadlines, process cleanup, source capture and workspace lifecycle.
+The Python suite passed on Linux/Python 3.9 and macOS/Python 3.13 during release preparation. Tests live in the repository's `tests/` directory and are excluded from installed skill folders. They cover setup, authentication isolation, session/model verification, private state, deadlines, process cleanup, source capture and workspace lifecycle. The Telegram Context suite uses synthetic conversations only and passed on macOS with Python 3.9.6 and 3.14. It covers lossless chunk round trips, spoofed message lines, pinned version 2/3 chunk bytes, summary dependencies and package file guards.
 
-Skills CLI **1.7.2** discovered and copied all five skills into disposable Claude Code and Codex homes. Both installed collections contained their licenses and no development tests or bytecode.
+Skills CLI **1.7.2** discovered and copied all five Coding skills into disposable Claude Code and Codex homes. Both installed collections contained their licenses and no development tests or bytecode. It also discovered all eight skills from the checkout with the Team plugin. A copy install of `tg-summarize` with `telegram-context` into a disposable project for both clients contained licenses and no tests or bytecode; the installed engine prepared and validated a synthetic export through the sibling path on Python 3.9.6.
 
 ## Native plugin distribution
 
@@ -23,9 +23,11 @@ Claude Code **2.1.302** and Codex **0.163.0** installed the package in disposabl
 
 Git-backed fixture tests installed version 0.1.0, advanced the source to synthetic version 0.1.1, verified the updated files and sibling Duo/Orkestra helpers, then uninstalled the plugin in both clients. Claude requires refreshing the marketplace before a manual plugin update; Codex refreshed the installed version through marketplace upgrade and a fresh client command. These distribution checks do not run a model task or establish provider entitlement.
 
+The `niche-team` plugin lives in `plugins/team` with the same two manifests. In disposable configuration homes, Claude Code **2.1.304** reported exactly three skills and zero hooks, agents, MCP or LSP servers for `niche-team`, and still five skills for `niche-coding`. Codex **0.163.0**'s app-server `skills/list` reported exactly three `niche-team:` and five `niche-coding:` skills. The Coding plugin's cached repository copy includes `plugins/team`, but Codex does not load those skills under `niche-coding`.
+
 ## Install shortcuts
 
-The Node launcher checks skill selection before calling Skills CLI, includes Duo for Orkestra, and rejects unsupported commands and unattended installs without an explicit selection. Its process tests also cover literal arguments without shell execution and preservation of installer failure status. Its only npm runtime dependency is Skills CLI **1.7.2**. The launcher disables installer telemetry by default, including the optional remote audit-card lookup; direct Skills CLI calls need their own `DISABLE_TELEMETRY=1`. A process regression test verifies the child receives the privacy default even when the parent has no opt-out environment variables. The npm package contains the install launcher. The tarball allowlist contains only the launcher, README, license and package metadata; the skills are installed from GitHub by Skills CLI. A real local-tarball invocation discovered all five skills from the renamed repository without installing them in list-only mode.
+The Node launcher checks skill selection before calling Skills CLI, includes Duo for Orkestra and `telegram-context` for `tg-cleanup` or `tg-summarize`, and rejects unsupported commands and unattended installs without an explicit selection. Its process tests also cover literal arguments without shell execution and preservation of installer failure status. Its only npm runtime dependency is Skills CLI **1.7.2**. The launcher disables installer telemetry by default, including the optional remote audit-card lookup; direct Skills CLI calls need their own `DISABLE_TELEMETRY=1`. A process regression test verifies the child receives the privacy default even when the parent has no opt-out environment variables. The npm package contains the install launcher. The tarball allowlist contains only the launcher, README, license and package metadata; the skills are installed from GitHub by Skills CLI. A real local-tarball invocation discovered all five skills from the renamed repository without installing them in list-only mode.
 
 ## Native integration
 

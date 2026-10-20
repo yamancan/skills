@@ -1,0 +1,4 @@
+interface:
+  display_name: "tg-summarize"
+  short_description: "Create or resume source-linked Telegram summaries"
+  default_prompt: "Use $tg-summarize to create layered summaries from this Telegram export or prepared context package."

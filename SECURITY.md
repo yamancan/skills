@@ -28,6 +28,12 @@ Duo's automatic reviewer uses a constrained native tool configuration and a hash
 
 Packet capture opens path components without following symlinks and reads from the same descriptor it checks. This prevents a concurrent symlink replacement from redirecting the capture to another file; it does not make concurrently edited source an atomic repository snapshot. Pause conflicting writers while preparing a review.
 
+## Telegram Context
+
+The Team skills process one Telegram Desktop JSON export locally. The engine makes no network or model calls; the agent running the skill reads the selected chunks and summaries under its provider's data handling. Packages are lossless and not anonymized: they keep names, IDs and message text. They default to `~/.local/share/telegram-context/packages/`, outside any repository; keep real exports out of this one.
+
+Message text, names and links are untrusted data. Chunks fence them, and rendered Markdown summaries escape HTML and authored links. Version 4 parent inputs (`summaries/*.txt`) hold unescaped model text: read them as plain text and never render them. Package paths reject traversal, symlinks and special files, and file sizes are bounded. See the [workflow reference](plugins/team/skills/telegram-context/references/workflow.md) for limits. Mechanical validation checks preservation and citations, not whether a summary is factually right.
+
 ## Local state and publishing
 
 Keep runtime state, credentials, provider output and native sessions outside the repository. Private logs can contain task information even after known-key redaction. Review the exact Git export and its history before making the repository public. Ignore rules are a convenience, not a secret-removal mechanism.

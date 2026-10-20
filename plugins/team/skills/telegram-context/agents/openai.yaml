@@ -1,0 +1,4 @@
+interface:
+  display_name: "Telegram Context"
+  short_description: "Turn Telegram exports into reusable AI context"
+  default_prompt: "Use $telegram-context to prepare this Telegram JSON export and create source-linked, layered summaries."

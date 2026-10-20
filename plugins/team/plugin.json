@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "niche-team",
+  "version": "0.1.0",
+  "description": "Niche Skills by Yaman Can: turn Telegram conversations into lossless AI context and source-linked summaries.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Niche Skills · Team",
+        "shortDescription": "Turn Telegram conversations into reusable AI context.",
+        "developerName": "Yaman Can",
+        "category": "Productivity"
+      }
+    }
+  }
+}

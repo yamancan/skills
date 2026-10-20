@@ -1,10 +1,10 @@
 # Installation and setup
 
-Install the [Coding collection](../README.md#coding), complete setup for the skills you choose, then start a fresh agent session.
+Install a collection ([Coding](../README.md#coding) or [Team](../README.md#team)), complete setup for the skills you choose, then start a fresh agent session.
 
 ## Install
 
-Choose one installation method per agent to avoid duplicate skills. The **Coding** plugin includes the five current Coding skills, including Duo alongside Orkestra. Each skill is stored once in this repository; both plugin hosts load the same source.
+Choose one installation method per agent to avoid duplicate skills. The **Coding** plugin includes the five current Coding skills, including Duo alongside Orkestra. The **Team** plugin includes the three Telegram skills, which share one engine. Each skill is stored once in this repository; both plugin hosts load the same source.
 
 ### Claude Code
 
@@ -12,7 +12,8 @@ In your terminal:
 
 ```bash
 claude plugin marketplace add yamancan/skills
-claude plugin install niche-coding@yamancan
+claude plugin install niche-coding@yamancan  # Coding
+claude plugin install niche-team@yamancan    # Team
 ```
 
 This installs for your user across projects. In Claude Code, invoke a skill with its plugin namespace, for example `/niche-coding:duo`. For automatic updates, open `/plugin`, select **Marketplaces → yamancan → Enable auto-update**; third-party marketplaces do not enable it by default.
@@ -23,7 +24,8 @@ In your terminal:
 
 ```bash
 codex plugin marketplace add yamancan/skills
-codex plugin add niche-coding@yamancan
+codex plugin add niche-coding@yamancan  # Coding
+codex plugin add niche-team@yamancan    # Team
 ```
 
 Start a fresh session and select the installed skill, for example `$niche-coding:duo`. The plugin adds instructions and helpers; it does not install or configure provider accounts.
@@ -38,7 +40,7 @@ You need Node.js **22.20+**, npm/npx and Git for this route. Run from the projec
 npx yamancan/skills
 ```
 
-Choose skills, then your agent. The shortcut includes Duo when you choose Orkestra. Keep the recommended **Symlink** method so clients share installed files. Installation defaults to the current project; add `-g` for all your projects.
+Choose skills, then your agent. The shortcut includes Duo when you choose Orkestra, and telegram-context when you choose tg-cleanup or tg-summarize. Keep the recommended **Symlink** method so clients share installed files. Installation defaults to the current project; add `-g` for all your projects.
 
 For a specific skill in both clients:
 
@@ -71,7 +73,7 @@ You can also use Skills CLI directly:
 DISABLE_TELEMETRY=1 npx skills@latest add yamancan/skills
 ```
 
-The direct CLI does not include Duo automatically: select both `duo` and `orkestra` when using Orkestra. Native plugins do not use the npm installer or its dependencies.
+The direct CLI does not include companions automatically: select both `duo` and `orkestra` when using Orkestra, and `telegram-context` with `tg-cleanup` or `tg-summarize`. Native plugins do not use the npm installer or its dependencies.
 
 </details>
 
@@ -86,6 +88,7 @@ Skill installation adds instructions and helpers. Native coding tools, accounts 
 | `orkestra` | Install Duo alongside it. Ask your agent to set up the **normal** profile using the installed Duo wizard; this also configures future Duo model IDs. |
 | `let-chinese` | Install OpenCode, run `opencode` in your terminal, connect your provider with `/connect` and select a model with `/models`. This worker supports native API authentication for OpenRouter and OpenCode Go. Free OpenCode Zen models such as `opencode/glm-5.3-flash-free` need only OpenCode, with no account or key, while they stay free. |
 | `let-chinese-somehow` | Install OpenCode and Zro, run `zro login` in your terminal, then check `zro models` for `dolly1-security` access. |
+| `telegram-context`, `tg-cleanup`, `tg-summarize` | No account or key. Python needs IANA timezone data. Export the conversation from Telegram Desktop in JSON format and give the agent its `result.json`; HTML exports and ZIP archives are not accepted. |
 
 Use the official [OpenCode](https://opencode.ai/docs/), [Zro](https://zro.moonmath.ai/docs/cli), [Claude Code](https://code.claude.com/docs/en/setup) and [Codex](https://developers.openai.com/codex/cli/) installation instructions. The skills launch existing tools; they do not install coding agents or buy access. Duo's [setup reference](../skills/duo/references/setup.md) explains model choices and repeat setup.
 
@@ -93,7 +96,7 @@ For a new Zro account, this [referral signup link](https://zro.moonmath.ai/?ref=
 
 ## Use
 
-For the Claude Code plugin, use `/niche-coding:<skill>`. For the Codex plugin, use `$niche-coding:<skill>`. For a CLI-installed skill, use its unprefixed name from your agent's menu; in Codex, for example:
+For the Claude Code plugins, use `/niche-coding:<skill>` or `/niche-team:<skill>`. For the Codex plugins, use `$niche-coding:<skill>` or `$niche-team:<skill>`. For a CLI-installed skill, use its unprefixed name from your agent's menu; in Codex, for example:
 
 ```text
 $let-chinese Fix this test with my selected OpenRouter model; review the diff.
@@ -101,6 +104,7 @@ $let-chinese-somehow Fix this bug with Dolly; run the tests and report back.
 $duo Implement this change with a peer review.
 $orkestra Coordinate these independent implementation slices.
 $project-context Audit the instructions loaded for this checkout.
+$tg-summarize Summarize ~/.local/share/telegram-context/packages/my-chat and validate it.
 ```
 
 The Let Chinese skills normally run a separate worker process and return a result to the calling agent. The calling agent checks the artifact and tests. They open an interactive terminal only when explicitly requested. Exact-session follow-ups reuse the returned state directory and session ID; they do not resume an arbitrary last session.
@@ -114,6 +118,7 @@ For Claude Code:
 ```bash
 claude plugin marketplace update yamancan
 claude plugin update niche-coding@yamancan
+claude plugin update niche-team@yamancan
 ```
 
 For Codex, refresh the marketplace and start a fresh session:
@@ -132,7 +137,7 @@ Run project updates from the project where you installed the skills; global upda
 DISABLE_TELEMETRY=1 npx skills@latest update duo orkestra -g
 ```
 
-Use `-p` instead of `-g` for project installations. Select other skills by name, for example `DISABLE_TELEMETRY=1 npx skills@latest update let-chinese -p`.
+Use `-p` instead of `-g` for project installations. Select other skills by name, for example `DISABLE_TELEMETRY=1 npx skills@latest update let-chinese -p`. Update the three Telegram skills together, like Duo and Orkestra.
 
 If you chose **Copy** or one client keeps old files, re-run the shortcut with the same skills, agents and scope. Keep `--copy` only if you originally chose Copy:
 

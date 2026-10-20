@@ -1,0 +1,4 @@
+interface:
+  display_name: "tg-cleanup"
+  short_description: "Prepare lossless text chunks from Telegram exports"
+  default_prompt: "Use $tg-cleanup to prepare this Telegram JSON export as lossless text chunks without generating summaries."

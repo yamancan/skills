@@ -60,6 +60,19 @@ test('selecting Orkestra includes its Duo companion once and preserves the chose
   assert.ok(args.includes('orkestra') && args.includes('claude-code') && args.includes('codex') && args.includes('-g'));
 });
 
+test('selecting a Telegram skill includes the telegram-context engine once', t => {
+  for (const chosen of [['tg-cleanup'], ['tg-summarize'], ['tg-cleanup', 'tg-summarize', 'telegram-context']]) {
+    const f = fixture(t);
+    const result = spawnSync(process.execPath, [f.launcher, '--skill', ...chosen, '-a', 'codex', '-y'], {
+      env: { ...process.env, ARGV_CAPTURE: f.capture }, encoding: 'utf8', timeout: 5000,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    const args = JSON.parse(readFileSync(f.capture));
+    assert.equal(args.filter(arg => arg === 'telegram-context').length, 1, String(chosen));
+    assert.ok(chosen.every(name => args.includes(name)));
+  }
+});
+
 test('unsupported commands stop before the installer can write anything', t => {
   const f = fixture(t);
   const result = spawnSync(process.execPath, [f.launcher, 'update', '-a', 'codex', '-y'], {
