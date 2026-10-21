@@ -86,7 +86,7 @@ def peer_command(record):
 
 def retain_codex_id(raw, record):
     # Recover an emitted ID even when a later JSONL line is cut off.
-    for line in raw.splitlines():
+    for line in raw.split('\n'):
         try:
             event = json.loads(line)
         except ValueError:
@@ -110,7 +110,8 @@ def invoke(command, workdir, prompt, output, errors, timeout):
 
 
 def codex_result(raw, record):
-    events = [json.loads(line) for line in raw.splitlines() if line.strip()]
+    # JSONL rows end at LF only; splitlines() would also cut at U+2028/U+2029 inside JSON strings.
+    events = [json.loads(line) for line in raw.split('\n') if line.strip()]
     if not all(isinstance(event, dict) for event in events):
         raise ValueError('Invalid Codex event')
     ids = [e['thread_id'] for e in events if e.get('type') == 'thread.started']
@@ -132,7 +133,7 @@ def codex_result(raw, record):
 
 def claude_result(raw, record):
     """A stream can show work long before it contains a completed response."""
-    events = [json.loads(line) for line in raw.splitlines() if line.strip()]
+    events = [json.loads(line) for line in raw.split('\n') if line.strip()]
     if not all(isinstance(event, dict) for event in events):
         raise ValueError('Invalid Claude event')
     results = [event for event in events if event.get('type') == 'result']

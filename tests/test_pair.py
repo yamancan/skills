@@ -56,14 +56,14 @@ if 'NO_PERSIST' not in os.environ:
     store.mkdir(parents=True, exist_ok=True)
     with (store / (session + '.jsonl')).open('a') as f:
         row = {'type': 'assistant', 'sessionId': os.environ.get('TRANSCRIPT_SESSION', session),
-               'uuid': str(uuid.uuid4()), 'message': {'content': [{'type': 'text', 'text': 'Reviewed'}]}}
+               'uuid': str(uuid.uuid4()), 'message': {'content': [{'type': 'text', 'text': os.environ.get('CLAUDE_TEXT', 'Reviewed')}]}}
         if 'METADATA_ONLY' in os.environ:
             row = {'type': 'cost-state', 'sessionId': session}
         f.write(json.dumps(row)+'\\n')
-result = {'session_id': os.environ.get('WRONG_SESSION', session), 'is_error': False, 'result': 'Reviewed'}
+result = {'session_id': os.environ.get('WRONG_SESSION', session), 'is_error': False, 'result': os.environ.get('CLAUDE_TEXT', 'Reviewed')}
 if streaming:
     result.update(type='result', subtype='success')
-print(json.dumps(result))
+print(json.dumps(result, ensure_ascii=False))
 ''')
         self.fake.chmod(0o700)
         codex = self.root / 'codex'
@@ -90,8 +90,8 @@ if 'TIMEOUT_CHILD' in os.environ:
 if 'TRUNCATE' in os.environ:
     print('{broken', flush=True)
     sys.exit(1)
-item = 'malformed item' if 'BAD_ITEM' in os.environ else {'id': 'item_0', 'type': 'agent_message', 'text': 'Codex reviewed'}
-print(json.dumps({'type': 'item.completed', 'item': item}))
+item = 'malformed item' if 'BAD_ITEM' in os.environ else {'id': 'item_0', 'type': 'agent_message', 'text': os.environ.get('CODEX_ITEM_TEXT', 'Codex reviewed')}
+print(json.dumps({'type': 'item.completed', 'item': item}, ensure_ascii=False))
 if 'INCOMPLETE' not in os.environ:
     print(json.dumps({'type': 'turn.completed', 'usage': {'input_tokens': 8, 'cached_input_tokens': 0, 'output_tokens': 2}}))
 if 'CLI_FAIL' in os.environ:
@@ -321,6 +321,24 @@ with transcript.open('a') as f:
         self.initialize_reverse()
         self.assertNotEqual(self.send_reverse('codex').returncode, 0)
         self.assertFalse((self.root/'calls.jsonl').exists())
+
+    def test_claude_answer_with_unicode_line_separators_completes(self):
+        self.initialize()
+        text = 'Line one\u2028line two\u2029end'
+        self.env['CLAUDE_TEXT'] = text
+        result = self.send()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout)['result'], text)
+
+    def test_codex_answer_with_unicode_line_separators_completes(self):
+        # Codex prints non-ASCII raw; U+2028/U+2029 inside a JSON string are content, not row breaks.
+        self.initialize_reverse()
+        text = 'Line one line two end'
+        self.env.update(CODEX_ITEM_TEXT=text, CODEX_TRANSCRIPT_TEXT=text)
+        result = self.send_reverse()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout)['result'], text)
+        self.assertEqual(json.loads(self.pair.read_text())['status'], 'ready')
 
     def test_codex_incomplete_turn_is_held_and_keeps_returned_session(self):
         self.initialize_reverse()
